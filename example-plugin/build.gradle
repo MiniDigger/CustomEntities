@@ -10,3 +10,7 @@ processResources {
         }
     }
 }
+
+jar {
+    baseName = "ExamplePlugin"
+}

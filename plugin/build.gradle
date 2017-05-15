@@ -7,6 +7,15 @@ buildscript {
     }
 }
 
+configurations {
+    server {
+        transitive = false
+    }
+    serverPlugin {
+        transitive = false
+    }
+}
+
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.11.2-R0.1-SNAPSHOT'
     compileOnly 'com.comphenix.protocol:ProtocolLib:4.2.1'
@@ -14,6 +23,9 @@ dependencies {
     compile project(":api")
 
     compile project(":v1_11_R1")
+
+    server 'org.spigotmc:spigot:1.11.2-R0.1-SNAPSHOT'
+    serverPlugin 'com.comphenix.protocol:ProtocolLib:4.2.1'
 }
 
 apply plugin: "artemis"
@@ -45,12 +57,28 @@ weave {
     optimizeEntitySystems = true
 }
 
-task copyPluginsToTestServer(type: Copy) {
-    from("${rootProject.projectDir}\\plugin\\build\\libs\\") {
+task installPlugins(type: Copy) {
+    from(configurations.serverPlugin)
+    into "$rootDir/testserver/plugins"
+    rename("([^-]*).*\\.jar", '$1.jar')
+}
+
+task installServer(type: Copy) {
+    from(configurations.server)
+    into "$rootDir/testserver/"
+    rename { 'spigot.jar' }
+    installPlugins.execute()
+}
+
+task install(type: Copy) {
+    from("$rootDir/plugin/build/libs/") {
         include "**/CustomEntities-*.jar"
     }
-    from("${rootProject.projectDir}\\example-plugin\\build\\libs\\") {
-        include "**/example-plugin-*.jar"
+    from("$rootDir/example-plugin/build/libs/") {
+        include "**/ExamplePlugin-*.jar"
     }
-    into "${rootProject.projectDir}\\testserver\\plugins\\"
+    rename("([^-]*).*\\.jar", '$1.jar')
+    into "$rootDir/testserver/plugins/"
 }
+
+
