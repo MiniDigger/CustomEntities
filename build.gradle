@@ -1,3 +1,14 @@
+allprojects {
+    group = 'me.minidigger.customentities'
+    version = '0.0.1-SNAPSHOT'
+
+    ext {
+        spigotVersion = "1.11.2-R0.1-SNAPSHOT"
+        protocolLibVersion = "4.2.1"
+        artemisVersion = "2.1.0"
+    }
+}
+
 buildscript {
     repositories {
         jcenter()
@@ -7,10 +18,6 @@ buildscript {
     }
 }
 
-allprojects {
-    group = 'me.minidigger.customentities'
-    version = '0.0.1-SNAPSHOT'
-}
 
 subprojects {
     apply plugin: "artemis"

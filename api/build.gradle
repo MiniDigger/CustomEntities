@@ -1,5 +1,5 @@
 dependencies {
-    compileOnly 'org.spigotmc:spigot-api:1.11.2-R0.1-SNAPSHOT'
+    compileOnly "org.spigotmc:spigot-api:$spigotVersion"
 
-    compile "net.onedaybeard.artemis:artemis-odb:2.1.0"
+    compile "net.onedaybeard.artemis:artemis-odb:$artemisVersion"
 }

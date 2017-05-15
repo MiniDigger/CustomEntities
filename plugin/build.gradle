@@ -8,15 +8,15 @@ configurations {
 }
 
 dependencies {
-    compileOnly 'org.spigotmc:spigot-api:1.11.2-R0.1-SNAPSHOT'
-    compileOnly 'com.comphenix.protocol:ProtocolLib:4.2.1'
+    compileOnly "org.spigotmc:spigot-api:$spigotVersion"
+    compileOnly "com.comphenix.protocol:ProtocolLib:$protocolLibVersion"
 
     compile project(":api")
 
     compile project(":v1_11_R1")
 
-    server 'org.spigotmc:spigot:1.11.2-R0.1-SNAPSHOT'
-    serverPlugin 'com.comphenix.protocol:ProtocolLib:4.2.1'
+    server "org.spigotmc:spigot:$spigotVersion"
+    serverPlugin "com.comphenix.protocol:ProtocolLib:$protocolLibVersion"
 }
 
 jar {
