@@ -25,7 +25,6 @@ public class ExamplePlugin extends JavaPlugin {
         customEntities.getWorldHandler().getWorldConfigurationBuilder(this)
         // .with(SomeSystem.class) // register systems here
         ;
-
         EntityWorld world = customEntities.getWorldHandler().getWorld(this);
         world.inject(this); // always inject the plugin before, else you can't use component mappers and stuff here!
         int entity = world.create();
