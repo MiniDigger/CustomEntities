@@ -27,7 +27,7 @@ public class CustomEntitiesImpl extends JavaPlugin implements CustomEntities {
             return;
         }
 
-        worldHandler = new WorldHandler();
+        worldHandler = new WorldHandler(this);
 
         ProtocolLibrary.getProtocolManager().addPacketListener(new EntityPacketTranslator(this));
 
