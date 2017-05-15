@@ -37,7 +37,7 @@ public abstract class EntityRegistry {
      * @param serverId The server id to translate
      * @return The translated id
      */
-    public short getIdForClient(short serverId) {
+    public short getIdForClient(Integer serverId) {
         return mobIds.getOrDefault(serverId, serverId);
     }
 

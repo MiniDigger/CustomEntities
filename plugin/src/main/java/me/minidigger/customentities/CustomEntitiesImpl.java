@@ -1,7 +1,9 @@
 package me.minidigger.customentities;
 
+import com.comphenix.protocol.ProtocolLibrary;
 import me.minidigger.customentities.api.CustomEntities;
 import me.minidigger.customentities.api.nms.NMSHandler;
+import me.minidigger.customentities.protocol.EntityPacketTranslator;
 import me.minidigger.customentities.v1_11_R1.NMSHandler_v1_11_R1;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -21,6 +23,8 @@ public class CustomEntitiesImpl extends JavaPlugin implements CustomEntities {
             getPluginLoader().disablePlugin(this);
             return;
         }
+
+        ProtocolLibrary.getProtocolManager().addPacketListener(new EntityPacketTranslator(this));
 
         getLogger().info("Loaded successfully with NMS version " + getNmsHandler().getVersion() + "!");
     }

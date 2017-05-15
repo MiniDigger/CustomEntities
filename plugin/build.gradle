@@ -1,5 +1,7 @@
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.11.2-R0.1-SNAPSHOT'
+    compileOnly 'com.comphenix.protocol:ProtocolLib:4.2.1'
+
     compile project(":api")
     
     compile project(":v1_11_R1")
