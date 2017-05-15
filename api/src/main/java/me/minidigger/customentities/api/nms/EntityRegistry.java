@@ -38,5 +38,4 @@ public abstract class EntityRegistry {
     public short getIdForClient(short serverId) {
         return mobIds.getOrDefault(serverId, serverId);
     }
-
 }

@@ -11,3 +11,12 @@ out/
 build/
 .gradle/
 
+# Test Server stuff
+/testserver/plugins/CustomEntities-0.0.1-SNAPSHOT.jar
+/testserver/plugins/example-plugin-0.0.1-SNAPSHOT.jar
+/testserver/plugins/ProtocolLib-4.2.1.jar
+/testserver/spigot-1.11.2.jar
+/testserver/logs/
+/testserver/world_the_end/
+/testserver/world/
+/testserver/world_nether/

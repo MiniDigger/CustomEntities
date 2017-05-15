@@ -1,8 +1,8 @@
-buildscript{
-    repositories{
+buildscript {
+    repositories {
         jcenter()
     }
-    dependencies{
+    dependencies {
         classpath "net.onedaybeard.artemis:artemis-odb-gradle-plugin:2.1.0"
     }
 }
@@ -12,7 +12,7 @@ dependencies {
     compileOnly 'com.comphenix.protocol:ProtocolLib:4.2.1'
 
     compile project(":api")
-    
+
     compile project(":v1_11_R1")
 }
 
@@ -28,6 +28,14 @@ jar {
 
 jar.baseName = "CustomEntities"
 
+processResources {
+    filesMatching('**/plugin.yml') {
+        filter {
+            it.replace('@version@', project.getVersion())
+        }
+    }
+}
+
 weave {
     classesDir = sourceSets.main.output.classesDir
     dependsOn build
@@ -35,4 +43,14 @@ weave {
     enablePooledWeaving = true
     generateLinkMutators = true
     optimizeEntitySystems = true
+}
+
+task copyPluginsToTestServer(type: Copy) {
+    from("${rootProject.projectDir}\\plugin\\build\\libs\\") {
+        include "**/CustomEntities-*.jar"
+    }
+    from("${rootProject.projectDir}\\example-plugin\\build\\libs\\") {
+        include "**/example-plugin-*.jar"
+    }
+    into "${rootProject.projectDir}\\testserver\\plugins\\"
 }

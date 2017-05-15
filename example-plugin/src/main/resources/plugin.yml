@@ -1,5 +1,6 @@
 name: ExamplePlugin
-version: 0.0.1-SNAPSHOT
+version: @version@
 authors: [MiniDigger, Yamakaja]
 main: me.minidigger.customentities.ExamplePlugin
-depends: [CustomEntities]
+load: STARTUP
+depend: [CustomEntities]
