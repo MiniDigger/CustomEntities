@@ -1,0 +1,13 @@
+rootProject.name = 'CustomEntities'
+
+include 'plugin'
+include 'api'
+
+include 'v1_11_R1'
+
+
+project(":plugin").projectDir = "$rootDir/plugin" as File
+project(":api").projectDir = "$rootDir/api" as File
+
+project(":v1_11_R1").projectDir = "$rootDir/v1_11_R1" as File
+

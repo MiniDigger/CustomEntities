@@ -1,0 +1,4 @@
+name: CustomEntities
+version: 0.0.1-SNAPSHOT
+authors: [MiniDigger, Yamakaja]
+main: me.minidigger.customentities.CustomEntitiesImpl

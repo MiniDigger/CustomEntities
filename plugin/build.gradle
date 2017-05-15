@@ -1,0 +1,16 @@
+dependencies {
+    compileOnly 'org.spigotmc:spigot-api:1.11.2-R0.1-SNAPSHOT'
+    compile project(":api")
+    
+    compile project(":v1_11_R1")
+}
+
+jar {
+    from {
+        configurations.compile.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+}
+
+jar.baseName = "CustomEntities"

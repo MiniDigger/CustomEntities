@@ -1,0 +1,21 @@
+allprojects {
+    group = 'me.minidigger.customentities'
+    version = '0.0.1-SNAPSHOT'
+}
+
+subprojects {
+    apply plugin: 'java'
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+
+        maven { url "https://hub.spigotmc.org/nexus/content/repositories/snapshots/" }
+    }
+}
+
