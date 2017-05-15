@@ -21,7 +21,7 @@ public class SpawnSystem extends IteratingSystem {
 
     @Override
     protected void process(int entityId) {
-        final BaseComponent baseComponent = baseComponentMapper.get(entityId);
+        BaseComponent baseComponent = baseComponentMapper.get(entityId);
         if (!baseComponent.spawned) {
             //TODO spawn entity
             baseComponent.spawned = true;
