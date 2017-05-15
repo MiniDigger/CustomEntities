@@ -1,9 +1,19 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "net.onedaybeard.artemis:artemis-odb-gradle-plugin:2.1.0"
+    }
+}
+
 allprojects {
     group = 'me.minidigger.customentities'
     version = '0.0.1-SNAPSHOT'
 }
 
 subprojects {
+    apply plugin: "artemis"
     apply plugin: 'java'
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
@@ -18,6 +28,14 @@ subprojects {
 
         maven { url "https://hub.spigotmc.org/nexus/content/repositories/snapshots/" }
         maven { url "http://repo.dmulloy2.net/nexus/repository/public/" }
+    }
 
+    weave {
+        classesDir = sourceSets.main.output.classesDir
+        dependsOn build
+        enableArtemisPlugin = true
+        enablePooledWeaving = true
+        generateLinkMutators = true
+        optimizeEntitySystems = true
     }
 }

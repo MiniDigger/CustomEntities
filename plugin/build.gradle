@@ -1,12 +1,3 @@
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath "net.onedaybeard.artemis:artemis-odb-gradle-plugin:2.1.0"
-    }
-}
-
 configurations {
     server {
         transitive = false
@@ -28,8 +19,6 @@ dependencies {
     serverPlugin 'com.comphenix.protocol:ProtocolLib:4.2.1'
 }
 
-apply plugin: "artemis"
-
 jar {
     from {
         configurations.compile.collect {
@@ -48,25 +37,20 @@ processResources {
     }
 }
 
-weave {
-    classesDir = sourceSets.main.output.classesDir
-    dependsOn build
-    enableArtemisPlugin = true
-    enablePooledWeaving = true
-    generateLinkMutators = true
-    optimizeEntitySystems = true
-}
-
 task installPlugins(type: Copy) {
+    print("Installing required plugins ... ")
     from(configurations.serverPlugin)
     into "$rootDir/testserver/plugins"
     rename("([^-]*).*\\.jar", '$1.jar')
+    println("Done.")
 }
 
 task installServer(type: Copy) {
+    print("Installing spigot server ... ")
     from(configurations.server)
     into "$rootDir/testserver/"
     rename { 'spigot.jar' }
+    println("Done.")
     installPlugins.execute()
 }
 
@@ -80,5 +64,3 @@ task install(type: Copy) {
     rename("([^-]*).*\\.jar", '$1.jar')
     into "$rootDir/testserver/plugins/"
 }
-
-
