@@ -1,6 +1,10 @@
 package me.minidigger.customentities.api.world;
 
 import com.artemis.WorldConfigurationBuilder;
+import com.artemis.injection.*;
+import me.minidigger.customentities.api.CustomEntities;
+import me.minidigger.customentities.api.systems.SpawnSystem;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 
 import java.util.HashMap;
@@ -14,9 +18,23 @@ public class WorldHandler {
     private Map<String, EntityWorld> worldMap;
     private Map<String, WorldConfigurationBuilder> worldConfigurationBuilderMap;
 
-    public WorldHandler() {
+    private long lastTick = System.currentTimeMillis();
+
+    private Injector injector;
+
+    public WorldHandler(CustomEntities customEntities) {
         worldMap = new HashMap<>();
         worldConfigurationBuilderMap = new HashMap<>();
+
+        FieldHandler fieldHandler = new FieldHandler(new InjectionCache());
+        fieldHandler.addFieldResolver(new CustomEntitiesFieldResolver());
+        fieldHandler.addFieldResolver(new WiredFieldResolver());
+        fieldHandler.addFieldResolver(new ArtemisFieldResolver());
+
+        injector = new CachedInjector().setFieldHandler(fieldHandler);
+
+        // tick loop
+        Bukkit.getScheduler().runTaskTimer(customEntities, this::tick, 1, 1);
     }
 
     /**
@@ -28,7 +46,7 @@ public class WorldHandler {
      * @return The {@link EntityWorld}
      */
     public EntityWorld getWorld(Plugin plugin) {
-        return worldMap.computeIfAbsent(plugin.getName(), k -> new EntityWorld(plugin, getWorldConfigurationBuilder(plugin).build()));
+        return worldMap.computeIfAbsent(plugin.getName(), k -> new EntityWorld(plugin, getWorldConfigurationBuilder(plugin).build().setInjector(injector)));
     }
 
     /**
@@ -50,6 +68,20 @@ public class WorldHandler {
      * @return The {@link WorldConfigurationBuilder}
      */
     private WorldConfigurationBuilder getNewWorldConfigurationBuilder(String key) {
-        return new WorldConfigurationBuilder();
+        return new WorldConfigurationBuilder()
+                .with(new SpawnSystem());
+    }
+
+    /**
+     * Ticks all worlds
+     */
+    private void tick() {
+        long delta = System.currentTimeMillis() - lastTick;
+        lastTick = System.currentTimeMillis();
+
+        worldMap.forEach((plugin, world) -> {
+            world.setDelta(delta);
+            world.process();
+        });
     }
 }
