@@ -2,8 +2,6 @@ package me.minidigger.customentities.api.nms;
 
 import org.bukkit.entity.EntityType;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -17,10 +15,10 @@ public abstract class EntityRegistry {
     /**
      * Register entity
      *
-     * @param entityName The name to register
-     * @param entityId The string id
+     * @param entityName  The name to register
+     * @param entityId    The string id
      * @param entityClass The class of the entity to register
-     * @param entityBase The entity type
+     * @param entityBase  The entity type
      */
     public void register(String entityName, String entityId, Class<?> entityClass, EntityType entityBase) {
         short id = (short) (1000 + mobIds.size());
@@ -37,7 +35,7 @@ public abstract class EntityRegistry {
      * @param serverId The server id to translate
      * @return The translated id
      */
-    public short getIdForClient(Integer serverId) {
+    public short getIdForClient(short serverId) {
         return mobIds.getOrDefault(serverId, serverId);
     }
 

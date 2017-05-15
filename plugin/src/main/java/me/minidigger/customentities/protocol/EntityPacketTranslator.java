@@ -19,6 +19,6 @@ public class EntityPacketTranslator extends PacketAdapter {
 
     @Override
     public void onPacketSending(PacketEvent event) {
-        event.getPacket().getIntegers().write(1, (int) plugin.getNmsHandler().getEntityRegistry().getIdForClient(event.getPacket().getIntegers().read(1)));
+        event.getPacket().getIntegers().write(1, (int) plugin.getNmsHandler().getEntityRegistry().getIdForClient(event.getPacket().getIntegers().read(1).shortValue()));
     }
 }
