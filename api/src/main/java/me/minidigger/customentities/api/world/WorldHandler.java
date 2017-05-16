@@ -73,7 +73,7 @@ public class WorldHandler {
     }
 
     /**
-     * Ticks all worlds
+     * Ticks all {@link com.artemis.World}s
      */
     private void tick() {
         long delta = System.currentTimeMillis() - lastTick;

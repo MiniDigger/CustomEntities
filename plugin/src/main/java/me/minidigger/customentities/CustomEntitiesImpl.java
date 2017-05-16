@@ -31,7 +31,7 @@ public class CustomEntitiesImpl extends JavaPlugin implements CustomEntities {
 
         ProtocolLibrary.getProtocolManager().addPacketListener(new EntityPacketTranslator(this));
 
-        getLogger().info("Loaded successfully with NMS version " + getNmsHandler().getVersion() + "!");
+        getLogger().info("Loaded successfully! NMS version: " + getNmsHandler().getVersion());
     }
 
     /**
@@ -54,7 +54,7 @@ public class CustomEntitiesImpl extends JavaPlugin implements CustomEntities {
                 break;
             default:
                 getLogger().severe("Unsupported version: \"" + nmsVersion + "\". Disabling plugin!");
-                getPluginLoader().disablePlugin(this);
+                return false;
         }
 
         return true;
