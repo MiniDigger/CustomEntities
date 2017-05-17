@@ -14,14 +14,13 @@ import java.util.logging.Logger;
 /**
  * Handles custom injections. Currently injects:
  * <ul>
- * <li>{@link Plugin}</li>
+ * <li>{@link Plugin} (for plugin and API via @{@link Internal}</li>
  * <li>{@link CustomEntities}</li>
  * <li>{@link Logger}</li>
  * </ul>
  */
 public class CustomEntitiesFieldResolver implements FieldResolver {
 
-    private EntityWorld world;
     private CustomEntities customEntities;
     private Plugin plugin;
 
@@ -32,11 +31,6 @@ public class CustomEntitiesFieldResolver implements FieldResolver {
 
     @Override
     public void initialize(World world) {
-        if (world instanceof EntityWorld) {
-            this.world = (EntityWorld) world;
-        } else {
-            customEntities.getLogger().warning("Tried to initialize field resolver with unknown world type: " + world.getClass().getName());
-        }
     }
 
     @Override
@@ -46,12 +40,9 @@ public class CustomEntitiesFieldResolver implements FieldResolver {
         } else if (Plugin.class.isAssignableFrom(fieldType)) {
             return plugin;
         } else if (fieldType.equals(Logger.class)) {
-            System.out.println(Arrays.toString(field.getDeclaredAnnotations()));
             if (field.isAnnotationPresent(Internal.class)) {
-                System.out.println("internal logger");
                 return customEntities.getLogger();
             } else {
-                System.out.println("logger");
                 return plugin.getLogger();
             }
         }
