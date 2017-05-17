@@ -15,6 +15,10 @@ import java.util.Map;
  */
 public class WorldHandler {
 
+    private static WorldHandler instance;
+
+    private CustomEntities plugin;
+
     private Map<String, EntityWorld> worldMap;
     private Map<String, WorldConfigurationBuilder> worldConfigurationBuilderMap;
 
@@ -22,19 +26,35 @@ public class WorldHandler {
 
     private Injector injector;
 
-    public WorldHandler(CustomEntities customEntities) {
-        worldMap = new HashMap<>();
-        worldConfigurationBuilderMap = new HashMap<>();
+    private WorldHandler(CustomEntities customEntities) {
+        this.plugin = customEntities;
+
+        this.worldMap = new HashMap<>();
+        this.worldConfigurationBuilderMap = new HashMap<>();
 
         FieldHandler fieldHandler = new FieldHandler(new InjectionCache());
-        fieldHandler.addFieldResolver(new CustomEntitiesFieldResolver());
+        fieldHandler.addFieldResolver(new CustomEntitiesFieldResolver(customEntities));
         fieldHandler.addFieldResolver(new WiredFieldResolver());
         fieldHandler.addFieldResolver(new ArtemisFieldResolver());
 
-        injector = new CachedInjector().setFieldHandler(fieldHandler);
+        this.injector = new CachedInjector().setFieldHandler(fieldHandler);
 
         // tick loop
         Bukkit.getScheduler().runTaskTimer(customEntities, this::tick, 1, 1);
+    }
+
+    public static WorldHandler initialize(CustomEntities customEntities) {
+        if (instance != null)
+            throw new RuntimeException("WorldHandler can only be instantiated once!");
+        return instance = new WorldHandler(customEntities);
+    }
+
+    public static WorldHandler getInstance() {
+        return instance;
+    }
+
+    public CustomEntities getPlugin() {
+        return plugin;
     }
 
     /**
@@ -84,4 +104,5 @@ public class WorldHandler {
             world.process();
         });
     }
+
 }

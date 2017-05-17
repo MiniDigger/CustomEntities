@@ -22,10 +22,12 @@ public class CustomEntitiesFieldResolver implements FieldResolver {
     private EntityWorld world;
     private CustomEntities customEntities;
 
+    public CustomEntitiesFieldResolver(CustomEntities customEntities) {
+        this.customEntities = customEntities;
+    }
+
     @Override
     public void initialize(World world) {
-        customEntities = (CustomEntities) Bukkit.getPluginManager().getPlugin("CustomEntities"); //FIXME hardcoded plugin name...
-
         if (world instanceof EntityWorld) {
             this.world = (EntityWorld) world;
         } else {

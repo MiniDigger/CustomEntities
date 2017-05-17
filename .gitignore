@@ -16,4 +16,4 @@ testserver/plugins/*.jar
 testserver/*.jar
 testserver/logs/
 testserver/world*
-/testserver/plugins/ProtocolLib/lastupdate
+testserver/plugins/ProtocolLib/lastupdate
