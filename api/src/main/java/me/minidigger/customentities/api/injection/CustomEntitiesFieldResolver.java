@@ -14,9 +14,9 @@ import java.util.logging.Logger;
 /**
  * Handles custom injections. Currently injects:
  * <ul>
- * <li>{@link Plugin} (for plugin and API via @{@link Internal}</li>
+ * <li>{@link Plugin}</li>
  * <li>{@link CustomEntities}</li>
- * <li>{@link Logger}</li>
+ * <li>{@link Logger} (both plugin (default) and API (via @{@link Internal}))</li>
  * </ul>
  */
 public class CustomEntitiesFieldResolver implements FieldResolver {
