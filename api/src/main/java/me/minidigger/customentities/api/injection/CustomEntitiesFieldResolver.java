@@ -1,12 +1,14 @@
-package me.minidigger.customentities.api.world;
+package me.minidigger.customentities.api.injection;
 
 import com.artemis.World;
 import com.artemis.injection.FieldResolver;
 import com.artemis.utils.reflect.Field;
 import me.minidigger.customentities.api.CustomEntities;
+import me.minidigger.customentities.api.world.EntityWorld;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 
+import java.util.Arrays;
 import java.util.logging.Logger;
 
 /**
@@ -44,7 +46,14 @@ public class CustomEntitiesFieldResolver implements FieldResolver {
         } else if (Plugin.class.isAssignableFrom(fieldType)) {
             return plugin;
         } else if (fieldType.equals(Logger.class)) {
-            return customEntities.getLogger();
+            System.out.println(Arrays.toString(field.getDeclaredAnnotations()));
+            if (field.isAnnotationPresent(Internal.class)) {
+                System.out.println("internal logger");
+                return customEntities.getLogger();
+            } else {
+                System.out.println("logger");
+                return plugin.getLogger();
+            }
         }
         return null;
     }

@@ -3,6 +3,7 @@ package me.minidigger.customentities.api.world;
 import com.artemis.WorldConfigurationBuilder;
 import com.artemis.injection.*;
 import me.minidigger.customentities.api.CustomEntities;
+import me.minidigger.customentities.api.injection.CustomEntitiesFieldResolver;
 import me.minidigger.customentities.api.systems.SpawnSystem;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;

@@ -4,6 +4,7 @@ import com.artemis.Aspect;
 import com.artemis.ComponentMapper;
 import com.artemis.systems.IteratingSystem;
 import me.minidigger.customentities.api.components.BaseComponent;
+import me.minidigger.customentities.api.injection.Internal;
 
 import java.util.logging.Logger;
 
@@ -13,6 +14,7 @@ import java.util.logging.Logger;
 public class SpawnSystem extends IteratingSystem {
 
     private ComponentMapper<BaseComponent> baseComponentMapper;
+    @Internal
     private Logger logger;
 
     public SpawnSystem() {
