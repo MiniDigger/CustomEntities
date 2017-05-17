@@ -24,20 +24,11 @@ public class WorldHandler {
 
     private long lastTick = System.currentTimeMillis();
 
-    private Injector injector;
-
     private WorldHandler(CustomEntities customEntities) {
         this.plugin = customEntities;
 
         this.worldMap = new HashMap<>();
         this.worldConfigurationBuilderMap = new HashMap<>();
-
-        FieldHandler fieldHandler = new FieldHandler(new InjectionCache());
-        fieldHandler.addFieldResolver(new CustomEntitiesFieldResolver(customEntities));
-        fieldHandler.addFieldResolver(new WiredFieldResolver());
-        fieldHandler.addFieldResolver(new ArtemisFieldResolver());
-
-        this.injector = new CachedInjector().setFieldHandler(fieldHandler);
 
         // tick loop
         Bukkit.getScheduler().runTaskTimer(customEntities, this::tick, 1, 1);
@@ -66,7 +57,7 @@ public class WorldHandler {
      * @return The {@link EntityWorld}
      */
     public EntityWorld getWorld(Plugin plugin) {
-        return worldMap.computeIfAbsent(plugin.getName(), k -> new EntityWorld(plugin, getWorldConfigurationBuilder(plugin).build().setInjector(injector)));
+        return worldMap.computeIfAbsent(plugin.getName(), k -> new EntityWorld(plugin, getWorldConfigurationBuilder(plugin).build().setInjector(createInjector(plugin))));
     }
 
     /**
@@ -90,6 +81,21 @@ public class WorldHandler {
     private WorldConfigurationBuilder getNewWorldConfigurationBuilder(String key) {
         return new WorldConfigurationBuilder()
                 .with(new SpawnSystem());
+    }
+
+    /**
+     * Creates a new {@link Injector} the specified {@link Plugin} is gonna use for dependency injection.
+     *
+     * @param plugin The {@link Plugin}
+     * @return the created {@link Injector}
+     */
+    private Injector createInjector(Plugin plugin) {
+        FieldHandler fieldHandler = new FieldHandler(new InjectionCache());
+        fieldHandler.addFieldResolver(new CustomEntitiesFieldResolver(this.plugin, plugin));
+        fieldHandler.addFieldResolver(new WiredFieldResolver());
+        fieldHandler.addFieldResolver(new ArtemisFieldResolver());
+
+        return new CachedInjector().setFieldHandler(fieldHandler);
     }
 
     /**

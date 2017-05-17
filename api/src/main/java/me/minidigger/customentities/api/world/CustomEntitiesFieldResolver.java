@@ -21,9 +21,11 @@ public class CustomEntitiesFieldResolver implements FieldResolver {
 
     private EntityWorld world;
     private CustomEntities customEntities;
+    private Plugin plugin;
 
-    public CustomEntitiesFieldResolver(CustomEntities customEntities) {
+    public CustomEntitiesFieldResolver(CustomEntities customEntities, Plugin plugin) {
         this.customEntities = customEntities;
+        this.plugin = plugin;
     }
 
     @Override
@@ -37,10 +39,10 @@ public class CustomEntitiesFieldResolver implements FieldResolver {
 
     @Override
     public Object resolve(Class<?> fieldType, Field field) {
-        if (fieldType.isAssignableFrom(Plugin.class)) {
-            return world.getPlugin();
-        } else if (fieldType.equals(CustomEntities.class)) {
+        if (fieldType.equals(CustomEntities.class)) {
             return customEntities;
+        } else if (Plugin.class.isAssignableFrom(fieldType)) {
+            return plugin;
         } else if (fieldType.equals(Logger.class)) {
             return customEntities.getLogger();
         }
