@@ -14,9 +14,7 @@ jar {
     }
 }
 
-task installAgent(type: Copy) {
-    build.execute()
-
+task installAgent(dependsOn: 'build', type: Copy) {
     from("$rootDir/agent/build/libs/") {
         include 'agent*.jar'
     }
