@@ -3,7 +3,7 @@ package me.minidigger.customentities.api.systems;
 import com.artemis.Aspect;
 import com.artemis.ComponentMapper;
 import com.artemis.systems.IteratingSystem;
-import me.minidigger.customentities.api.components.BaseComponent;
+import me.minidigger.customentities.api.components.EntityBaseComponent;
 import me.minidigger.customentities.api.injection.Internal;
 
 import java.util.logging.Logger;
@@ -13,17 +13,17 @@ import java.util.logging.Logger;
  */
 public class SpawnSystem extends IteratingSystem {
 
-    private ComponentMapper<BaseComponent> baseComponentMapper;
+    private ComponentMapper<EntityBaseComponent> baseComponentMapper;
     @Internal
     private Logger logger;
 
     public SpawnSystem() {
-        super(Aspect.all(BaseComponent.class));
+        super(Aspect.all(EntityBaseComponent.class));
     }
 
     @Override
     protected void process(int entityId) {
-        BaseComponent baseComponent = baseComponentMapper.get(entityId);
+        EntityBaseComponent baseComponent = baseComponentMapper.get(entityId);
         if (!baseComponent.spawned) {
             //TODO spawn entity
             baseComponent.spawned = true;
