@@ -6,7 +6,7 @@ import me.minidigger.customentities.api.Documentation;
 /**
  * Adds health to the entity (and the ability to die)
  */
-@Documentation(val = "Adds health to the entity (and the ability to die)")
+@Documentation("Adds health to the entity (and the ability to die)")
 public class HealthComponent extends Component {
 
     public float maxHealth;

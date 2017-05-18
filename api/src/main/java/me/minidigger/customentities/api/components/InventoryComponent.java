@@ -7,7 +7,7 @@ import org.bukkit.inventory.Inventory;
 /**
  * Allows the entity to hold items
  */
-@Documentation(val = "Allows the entity to hold items")
+@Documentation("Allows the entity to hold items")
 public class InventoryComponent extends Component {
 
     public Inventory inventory;

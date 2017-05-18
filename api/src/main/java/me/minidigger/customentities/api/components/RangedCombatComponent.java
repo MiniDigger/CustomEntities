@@ -6,7 +6,7 @@ import org.bukkit.entity.Projectile;
 /**
  * Allows the entity to shoot projectiles at targets
  */
-@Documentation(val = "Allows the entity to shoot projectiles at targets")
+@Documentation("Allows the entity to shoot projectiles at targets")
 public class RangedCombatComponent extends CombatComponent {
 
     public Class<? extends Projectile> projectileClass;

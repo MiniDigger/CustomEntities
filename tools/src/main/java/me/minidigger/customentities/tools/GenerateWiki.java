@@ -112,10 +112,10 @@ public class GenerateWiki {
             System.out.println("    Generate " + file.getAbsolutePath());
 
             try (PrintWriter pw = new PrintWriter(file)) {
-                pw.println(documentation.val() + ":  ");
+                pw.println(documentation.value() + ":  ");
                 pw.println();
                 for (Field field : clazz.getDeclaredFields()) {
-                    String doc = field.isAnnotationPresent(Documentation.class) ? ": " + field.getAnnotation(Documentation.class).val() : "";
+                    String doc = field.isAnnotationPresent(Documentation.class) ? ": " + field.getAnnotation(Documentation.class).value() : "";
                     pw.println("* " + field.getName() + ": " + field.getType().getName() + doc);
                 }
 

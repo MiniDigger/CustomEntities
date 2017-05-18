@@ -7,7 +7,7 @@ import org.bukkit.World;
 /**
  * Represents the position of an entity
  */
-@Documentation(val = "Represents the position of an entity")
+@Documentation("Represents the position of an entity")
 public class PositionComponent extends Component {
 
     public World world;

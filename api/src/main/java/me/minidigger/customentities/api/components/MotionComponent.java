@@ -5,7 +5,7 @@ import me.minidigger.customentities.api.Documentation;
 /**
  * Adds the ability to move to the entity
  */
-@Documentation(val = "Adds the ability to move to the entity")
+@Documentation("Adds the ability to move to the entity")
 public class MotionComponent {
 
     public float forwardSpeed;

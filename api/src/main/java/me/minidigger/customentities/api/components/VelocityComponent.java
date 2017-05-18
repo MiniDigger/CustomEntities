@@ -6,7 +6,7 @@ import me.minidigger.customentities.api.Documentation;
 /**
  * Tracks the velocity of the entity for each axis
  */
-@Documentation(val = "Tracks the velocity of the entity for each axis")
+@Documentation("Tracks the velocity of the entity for each axis")
 public class VelocityComponent extends Component {
 
     public double motX;

@@ -6,7 +6,7 @@ import me.minidigger.customentities.api.Documentation;
 /**
  * Allows the entity to regenerate health
  */
-@Documentation(val = "Allows the entity to regenerate health")
+@Documentation("Allows the entity to regenerate health")
 public class HealthRegenComponent extends Component {
 
     public float regenSpeed;

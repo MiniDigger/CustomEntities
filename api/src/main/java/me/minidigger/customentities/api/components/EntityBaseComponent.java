@@ -9,7 +9,7 @@ import me.minidigger.customentities.api.Documentation;
 /**
  * Specifies the base EntityType an entity should have
  */
-@Documentation(val = "Specifies the base EntityType an entity should have")
+@Documentation("Specifies the base EntityType an entity should have")
 @PooledWeaver
 public class EntityBaseComponent extends Component {
 
