@@ -1,11 +1,15 @@
 package me.minidigger.customentities.api.components;
 
+import me.minidigger.customentities.api.Documentation;
+
 /**
- * Created by Yamakaja on 18.05.17.
+ * Allows the entity to fight targets at melee range
  */
+@Documentation(val = "Allows the entity to fight targets at melee range")
 public class MeleeCombatComponent extends CombatComponent {
 
     public float attackDamage;
     public float knockback;
+    public float attackRange;
 
 }

@@ -1,11 +1,13 @@
 package me.minidigger.customentities.api.components;
 
 import com.artemis.Component;
+import me.minidigger.customentities.api.Documentation;
 import org.bukkit.World;
 
 /**
- * Created by Yamakaja on 18.05.17.
+ * Represents the position of an entity
  */
+@Documentation(val = "Represents the position of an entity")
 public class PositionComponent extends Component {
 
     public World world;

@@ -1,8 +1,11 @@
 package me.minidigger.customentities.api.components;
 
+import me.minidigger.customentities.api.Documentation;
+
 /**
- * Created by Yamakaja on 18.05.17.
+ * Adds the ability to move to the entity
  */
+@Documentation(val = "Adds the ability to move to the entity")
 public class MotionComponent {
 
     public float forwardSpeed;

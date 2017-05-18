@@ -1,10 +1,12 @@
 package me.minidigger.customentities.api.components;
 
 import com.artemis.Component;
+import me.minidigger.customentities.api.Documentation;
 
 /**
- * Created by Yamakaja on 18.05.17.
+ * Tracks the velocity of the entity for each axis
  */
+@Documentation(val = "Tracks the velocity of the entity for each axis")
 public class VelocityComponent extends Component {
 
     public double motX;
