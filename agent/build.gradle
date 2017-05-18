@@ -1,0 +1,26 @@
+dependencies {
+    compile "org.ow2.asm:asm-all:5.2"
+}
+
+jar {
+    from {
+        configurations.compile.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+
+    manifest {
+        attributes("Premain-Class": "me.minidigger.customentities.agent.CustomEntitiesAgent")
+    }
+}
+
+task installAgent(type: Copy) {
+    build.execute()
+
+    from("$rootDir/agent/build/libs/") {
+        include 'agent*.jar'
+    }
+    into "$rootDir/testserver/"
+
+    rename { 'CustomEntitiesAgent.jar' }
+}

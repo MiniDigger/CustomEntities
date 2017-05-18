@@ -18,6 +18,8 @@ testserver/logs/
 testserver/world*
 testserver/plugins/ProtocolLib/lastupdate
 testserver/server.properties
+testserver/ops.json
+testserver/usercache.json
 
 # temp wiki dir
 /wiki/
