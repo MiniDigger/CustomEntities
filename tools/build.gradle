@@ -8,6 +8,7 @@ dependencies {
     compile "org.spigotmc:spigot-api:$spigotVersion"
 }
 
+apply plugin: "java"
 apply plugin: "application"
 
 mainClassName = "me.minidigger.customentities.tools.GenerateWiki"

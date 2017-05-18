@@ -17,3 +17,5 @@ testserver/*.jar
 testserver/logs/
 testserver/world*
 testserver/plugins/ProtocolLib/lastupdate
+# temp wiki dir
+/wiki/
