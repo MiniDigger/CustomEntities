@@ -7,7 +7,7 @@ import org.bukkit.entity.EntityType;
 import me.minidigger.customentities.api.Documentation;
 
 /**
- * Created by Martin on 15/05/2017.
+ * Specifies the base EntityType an entity should have
  */
 @Documentation(val = "Specifies the base EntityType an entity should have")
 @PooledWeaver

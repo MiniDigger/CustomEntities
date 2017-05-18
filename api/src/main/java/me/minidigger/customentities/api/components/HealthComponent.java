@@ -1,14 +1,15 @@
 package me.minidigger.customentities.api.components;
 
 import com.artemis.Component;
+import me.minidigger.customentities.api.Documentation;
 
 /**
- * Created by Yamakaja on 18.05.17.
+ * Adds health to the entity (and the ability to die)
  */
+@Documentation(val = "Adds health to the entity (and the ability to die)")
 public class HealthComponent extends Component {
 
     public float maxHealth;
     public float health;
-    public float regenSpeed;
 
 }
