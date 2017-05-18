@@ -35,6 +35,7 @@ subprojects {
 
         maven { url "https://hub.spigotmc.org/nexus/content/repositories/snapshots/" }
         maven { url "http://repo.dmulloy2.net/nexus/repository/public/" }
+        maven { url "https://oss.sonatype.org/content/groups/public/" }
     }
 
     weave {

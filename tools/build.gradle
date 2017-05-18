@@ -1,0 +1,6 @@
+dependencies {
+    compile project(":plugin")
+    compile project(":api")
+        compile "org.reflections:reflections:0.9.10"
+        compile "org.eclipse.jgit:org.eclipse.jgit:4.7.0.201704051617-r"
+}
