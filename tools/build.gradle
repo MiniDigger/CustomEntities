@@ -1,6 +1,21 @@
 dependencies {
     compile project(":plugin")
     compile project(":api")
-        compile "org.reflections:reflections:0.9.10"
-        compile "org.eclipse.jgit:org.eclipse.jgit:4.7.0.201704051617-r"
+
+    compile "org.reflections:reflections:0.9.10"
+    compile "org.eclipse.jgit:org.eclipse.jgit:4.7.0.201704051617-r"
+
+    compile "org.spigotmc:spigot-api:$spigotVersion"
+}
+
+apply plugin: "application"
+
+mainClassName = "me.minidigger.customentities.tools.GenerateWiki"
+
+jar {
+    from {
+        configurations.compile.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
 }
