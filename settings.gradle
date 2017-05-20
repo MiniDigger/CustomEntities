@@ -12,9 +12,6 @@ project(":example-plugin").projectDir = "$rootDir/example-plugin" as File
 include 'tools'
 project(":tools").projectDir = "$rootDir/tools" as File
 
-include 'agent'
-project(":agent").projectDir = "$rootDir/agent" as File
-
 
 include 'v1_11_R1'
 project(":v1_11_R1").projectDir = "$rootDir/v1_11_R1" as File
