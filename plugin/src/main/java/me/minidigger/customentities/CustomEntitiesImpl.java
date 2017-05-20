@@ -57,6 +57,8 @@ public class CustomEntitiesImpl extends JavaPlugin implements CustomEntities {
                 return false;
         }
 
+        nmsHandler.registerTransformer();
+
         return true;
     }
 

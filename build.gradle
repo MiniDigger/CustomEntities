@@ -6,6 +6,7 @@ allprojects {
         spigotVersion = "1.11.2-R0.1-SNAPSHOT"
         protocolLibVersion = "4.2.1"
         artemisVersion = "2.1.0"
+        runtimeTransformerVersion = "1.0-SNAPSHOT"
     }
 }
 

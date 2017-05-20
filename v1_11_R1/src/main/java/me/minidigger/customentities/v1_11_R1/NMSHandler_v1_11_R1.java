@@ -3,6 +3,8 @@ package me.minidigger.customentities.v1_11_R1;
 import me.minidigger.customentities.api.CustomEntities;
 import me.minidigger.customentities.api.nms.EntityRegistry;
 import me.minidigger.customentities.api.nms.NMSHandler;
+import me.minidigger.customentities.v1_11_R1.transformer.EntityLivingTransformer;
+import me.yamakaja.runtimetransformer.RuntimeTransformer;
 import net.minecraft.server.v1_11_R1.EntityTypes;
 
 import java.lang.reflect.InvocationTargetException;
@@ -21,6 +23,7 @@ public class NMSHandler_v1_11_R1 implements NMSHandler {
         this.entityRegistry = new EntityRegistry() {
 
             private Method registerEntityMethod;
+
             {
                 try {
                     registerEntityMethod = EntityTypes.class.getDeclaredMethod("a", int.class, String.class, Class.class, String.class);
@@ -40,6 +43,11 @@ public class NMSHandler_v1_11_R1 implements NMSHandler {
             }
 
         };
+    }
+
+    @Override
+    public void registerTransformer() {
+        new RuntimeTransformer(EntityLivingTransformer.class);
     }
 
     @Override

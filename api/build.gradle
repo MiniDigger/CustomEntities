@@ -2,4 +2,7 @@ dependencies {
     compileOnly "org.spigotmc:spigot-api:$spigotVersion"
 
     compile "net.onedaybeard.artemis:artemis-odb:$artemisVersion"
+
+    compile "me.yamakaja.runtimetransformer:agent:$runtimeTransformerVersion"
+    compile "me.yamakaja.runtimetransformer:api:$runtimeTransformerVersion"
 }

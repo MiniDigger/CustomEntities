@@ -7,6 +7,8 @@ import me.minidigger.customentities.api.CustomEntities;
  */
 public interface NMSHandler {
 
+    void registerTransformer();
+
     String getVersion();
 
     EntityRegistry getEntityRegistry();
