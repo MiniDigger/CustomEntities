@@ -3,7 +3,8 @@ package me.minidigger.customentities.v1_11_R1;
 import me.minidigger.customentities.api.CustomEntities;
 import me.minidigger.customentities.api.nms.EntityRegistry;
 import me.minidigger.customentities.api.nms.NMSHandler;
-import me.minidigger.customentities.v1_11_R1.transformer.EntityLivingTransformer;
+import me.minidigger.customentities.v1_11_R1.transformer.BaseTransformer;
+import me.minidigger.customentities.v1_11_R1.transformer.HealthTransformer;
 import me.yamakaja.runtimetransformer.RuntimeTransformer;
 import net.minecraft.server.v1_11_R1.EntityTypes;
 
@@ -47,7 +48,10 @@ public class NMSHandler_v1_11_R1 implements NMSHandler {
 
     @Override
     public void registerTransformer() {
-        new RuntimeTransformer(EntityLivingTransformer.class);
+        //getPlugin().getWorldHandler().getWorld(getPlugin()).inject(InjectionHelper.getInstance(getUniqueID()));
+        new RuntimeTransformer(
+                HealthTransformer.class,
+                BaseTransformer.class);
     }
 
     @Override
