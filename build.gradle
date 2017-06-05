@@ -5,23 +5,11 @@ allprojects {
     ext {
         spigotVersion = "1.11.2-R0.1-SNAPSHOT"
         protocolLibVersion = "4.2.1"
-        artemisVersion = "2.1.0"
         runtimeTransformerVersion = "1.0-SNAPSHOT"
     }
 }
 
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath "net.onedaybeard.artemis:artemis-odb-gradle-plugin:2.1.0"
-    }
-}
-
-
 subprojects {
-    apply plugin: "artemis"
     apply plugin: 'java'
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
@@ -39,12 +27,4 @@ subprojects {
         maven { url "https://oss.sonatype.org/content/groups/public/" }
     }
 
-    weave {
-        classesDir = sourceSets.main.output.classesDir
-        dependsOn build
-        enableArtemisPlugin = true
-        enablePooledWeaving = true
-        generateLinkMutators = true
-        optimizeEntitySystems = true
-    }
 }

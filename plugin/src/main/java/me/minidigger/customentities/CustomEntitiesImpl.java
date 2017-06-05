@@ -2,9 +2,7 @@ package me.minidigger.customentities;
 
 import com.comphenix.protocol.ProtocolLibrary;
 import me.minidigger.customentities.api.CustomEntities;
-import me.minidigger.customentities.api.injection.InjectionHelper;
 import me.minidigger.customentities.api.nms.NMSHandler;
-import me.minidigger.customentities.api.world.WorldHandler;
 import me.minidigger.customentities.protocol.EntityPacketTranslator;
 import me.minidigger.customentities.v1_11_R1.NMSHandler_v1_11_R1;
 import org.bukkit.Bukkit;
@@ -19,14 +17,9 @@ import java.util.regex.Pattern;
 public class CustomEntitiesImpl extends JavaPlugin implements CustomEntities {
 
     private NMSHandler nmsHandler;
-    private WorldHandler worldHandler;
 
     @Override
     public void onEnable() {
-        worldHandler = WorldHandler.initialize(this);
-
-        //TODO one injection helper per plugin?
-        worldHandler.getWorld(this).inject(InjectionHelper.getInstance());
 
         if (!loadNMSHandler()) {
             getPluginLoader().disablePlugin(this);
@@ -71,8 +64,4 @@ public class CustomEntitiesImpl extends JavaPlugin implements CustomEntities {
         return nmsHandler;
     }
 
-    @Override
-    public WorldHandler getWorldHandler() {
-        return worldHandler;
-    }
 }
